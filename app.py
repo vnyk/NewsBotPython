@@ -1,12 +1,11 @@
 import os, sys
-from flask import flask, request
-
+from flask import Flask, request
+from utils import wit_response, get_news_elements
 from pymessenger import Bot
-
 
 app = Flask(__name__)
 
-PAGE_ACCESS_TOKEN = "EAAB2oUJPISgBAAh7FYvxFZASiKrHj2jejkpKyeQgUzLfLTMZCxw3rieH684IZC7jCIaGQGeZA5z7HBBcjwgexcOG0hhxIVV0rKQcXwEduxTCZBVoYWdU0evDZCtKfPa3MZCh1MVPvKaKesuMcqFqr4YWVyRQhNwMwvJ2KlTPpnv5AZDZD"
+PAGE_ACCESS_TOKEN = "EAAEtYWZCZBL8gBAJEwRD9B5XFEAtyuxnUfwcM4qRHLvP24GtZCC2nyZCDDKpMzKheKrZC9brZA3dA4b38QeCvNMj39gIvv2knEjCLuZAYITFTFdNFEcExOyF7BoWabUjZCaMi33L6WVO09y6rbuNw8QdZCriAcD5M8ZAGU24EvntC3XipeQILtPPwQ"
 
 bot = Bot(PAGE_ACCESS_TOKEN)
 
@@ -42,7 +41,7 @@ def webhook():
 						messaging_text = 'no text'
 
 					categories = wit_response(messaging_text)
-					#elements = get_news_elements(categories)
+					elements = get_news_elements(categories)
 					bot.send_generic_message(sender_id, elements)
 
 	return "ok", 200
