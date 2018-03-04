@@ -13,8 +13,8 @@ def wit_response(message_text):
 	entities = list(resp['entities'])
 	for entity in entities:
 		categories[entity] = resp['entities'][entity][0]['value']
-	
-	return categories
+			
+	return(entity,value,categories)
 
 
 def get_news_elements(categories):

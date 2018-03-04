@@ -42,7 +42,7 @@ def webhook():
 
 					response = None
 
-					entity, value = wit_response(messaging_text)
+					entity, value, categories = wit_response(messaging_text)
 					if entity == 'newstype':
 						if(categories):
 							elements=get_news_elements(categories)
