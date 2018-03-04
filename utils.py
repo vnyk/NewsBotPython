@@ -8,13 +8,18 @@ client = Wit(access_token = access_token)
 def wit_response(message_text):
 	resp = client.message(message_text)
 	categories = {'newstype':None, 'location':None}
+	entity=None
+	value=None
+	try:
+		entity=list(resp['entities'])[0]
+		value=resp['entities'][entity][0]['value']
+		entities = list(resp['entities'])
+		for entity in entities:
+			categories[entity] = resp['entities'][entity][0]['value']
+		
+	except:
+		pass
 
-	value=resp['entities'][entity][0]['value']
-	entities = list(resp['entities'])
-	for entity in entities:
-		categories[entity] = resp['entities'][entity][0]['value']
-	
-			
 	return(entity,value,categories)
 
 
