@@ -13,6 +13,7 @@ def wit_response(message_text):
 	entities = list(resp['entities'])
 	for entity in entities:
 		categories[entity] = resp['entities'][entity][0]['value']
+	value=resp['entities'][entity][0]['value']
 			
 	return(entity,value,categories)
 
