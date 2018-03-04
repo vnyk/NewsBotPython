@@ -44,7 +44,13 @@ def webhook():
 
 					entity, value = wit_response(messaging_text)
 					if entity == 'newstype':
-						response = "Ok, I will send you the {} news".format(str(value))
+						if(categories):
+							elements=get_news_elements(categories)
+							bot.send_generic_message(sender_id, elements)
+							response="here it is! what else?"
+						else:
+							response="which news do you want?"
+						#response = "Ok, I will send you the {} news".format(str(value))
 					elif entity == 'location':
 						response = "Ok, so you live in {0}. Here are top headlines from {0}".format(str(value))
 
