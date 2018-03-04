@@ -52,7 +52,11 @@ def webhook():
 							response="which news do you want?"
 						#response = "Ok, I will send you the {} news".format(str(value))
 					elif entity == 'location':
+						categories="{}".format(str(value))
+						elements=get_news_elements(categories)
+						bot.send_generic_message(sender_id, elements)
 						response = "Ok, so you live in {0}. Here are top headlines from {0}".format(str(value))
+
 
 					if response == None:
 						response = "I have no idea what you are saying!"
